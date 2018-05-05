@@ -6,7 +6,9 @@
 #define GROUPPROJECT_DOODLEBUG_HPP
 
 
-class Doodlebug {
+#include "Critter.hpp"
+
+class Doodlebug : public Critter{
 
 };
 

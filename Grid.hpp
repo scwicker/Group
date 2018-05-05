@@ -6,8 +6,16 @@
 #define GROUPPROJECT_GRID_HPP
 
 
-class Grid {
+#include "Critter.hpp"
 
+class Grid {
+private:
+    Critter*** grid;
+public:
+    Grid();
+    ~Grid();
+
+    long Print();
 };
 
 

@@ -6,7 +6,7 @@
 #define GROUPPROJECT_CRITTER_HPP
 
 
-class Critter {
+class Critter  {
 
 };
 

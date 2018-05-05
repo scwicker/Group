@@ -6,7 +6,11 @@
 #define GROUPPROJECT_ANT_HPP
 
 
-class Ant {
+#include "Critter.hpp"
+
+enum Direction{UP,DOWN,LEFT,RIGHT};
+class Ant : public Critter{
+
 
 };
 
