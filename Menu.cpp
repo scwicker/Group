@@ -10,7 +10,7 @@
 
 #include "Menu.hpp" // Menu class specification
 
-#include "validation.hpp" // getInt()
+#include "helpers.hpp" // getInt()
 #include <iostream>
 #include <string>
 
