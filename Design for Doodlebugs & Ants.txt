@@ -1,0 +1,150 @@
+Hi all!  We can keep most of our discussion in Slack, but I figured I'd post this here for easy reference.  This design is somewhat incomplete, but it's a start.  I've broken it up into 5 classes - Critter, Ant, Doodlebug, Grid, and Game.  Game::run() is the main interface for our simulation.  In my design, our main.cpp would only instantiate a Game object and run() it.
+
+Please let me know what you think, and any suggestions/improvements.  As for the actual coding, we can divide up by certain classes or methods.  Scott has created a shared private github repository that we can work with.  If anyone isn't comfortable with coding or incredibly busy with all the other work we have, maybe some people can focus on the test plan/reflection/design document, too.  
+
+Critter
+----------
+#xPos: int
+#yPos: int
+#stepsSurvived: int
+----------
++Critter(): constructor
++Critter(xPos: int, yPos: int): constructor
++~Critter(): destructor
++move(): void (virtual)
++breed(): void (virtual)
++age(): void
+
+Critter::move(Grid& grid)
+	pick a random number (0 - 3)
+	try to move up, down, left, or right based on random number
+	if cell is not empty (null) or off the grid, don't move
+	else, move and update xPos and yPos
+
+Critter::age()
+	stepsSurvived++
+
+Ant (subclass Critter)
+----------
+----------
++Ant(): constructor
++move(Grid& grid): void (virtual)
++breed(Grid& grid): void (virtual)
+
+Ant::move(Grid& grid)
+	Critter::move(Critter** grid)
+
+Ant::breed(Grid& grid)
+	if stepsSurvived % 3 == 0
+		if an adjacent cell is empty
+			antSpawned = false
+			until antSpawned
+				pick a random number (0 - 3)
+					pick adjacent cell above, below, left, or right based on random number
+					if cell is empty
+						spawn new ant in cell
+						antSpawned = true
+
+
+
+Doodlebug (subclass Critter)
+----------
+-stepsWithoutEating: int
+----------
++Doodlebug(): constructor
++move(Grid& grid): void (virtual)
++breed(Grid& grid): void (virtual)
++getStepsWithoutEating(): int
+
+Doodlebug::move(Grid& grid)
+	if ant in adjacent cell
+		delete ant in adjacent cell
+		move to adjacent cell and update xPos and yPos
+		stepsWithoutEating = 0
+	else
+		Critter::move(Critter** grid)
+		stepsWithoutEating++
+
+Doodlebug::breed(Grid& grid)
+	if stepsSurvived % 8 == 0
+		if an adjacent cell is empty
+			antSpawned = false
+			until antSpawned
+				pick a random number (0 - 3)
+					pick adjacent cell above, below, left, or right based on random number
+					if cell is empty
+						spawn new ant in cell
+						antSpawned = true
+
+Grid
+----------
+-grid: Critter***
+-rows: int
+-cols: int
+----------
++Grid(): constructor
++Grid(rows: int, cols: int): constructor
++~Grid(): destructor
++getGrid(): Grid
++getRows(): int
++getCols(): int
++print(): void
+
+Grid::Grid(int rows, int cols)
+	this->rows = rows
+	this->cols = cols
+	grid = new Critter**[rows]
+	for (int i = 0; i < rows; i++)
+		grid[i] = new Critter*[cols]
+		for (int j = 0; j < cols; j++)
+			grid[i][j] = nullptr
+
+Grid::~Grid()
+	for (int i = 0; i < rows; i++)
+		for (int j = 0; j < cols; j++)
+			if (grid[i][j] != nullptr)
+				delete grid[i][j]
+		delete [] grid[i]
+	delete [] grid
+
+Game
+----------
+-currentStep: int
+----------
++Game(): constructor
++run(): void
+
+Game::run()
+	create 20x20 grid (modify later to make based on user input)
+	create 5 doodlebugs and randomly place on the board
+	create 100 ants and randomly place on the board
+
+	create continueMenu
+	initialize menuChoice variable
+
+	do
+		ask user how many steps to run
+
+		for number of steps to run
+			doodlebugs move/eat
+			ants move
+			breed all ants and doodlebugs
+			for all doodlebugs, if stepsWithoutEating is 3, delete (starve) the doodlebug
+
+			display the result at end of turn (O for ant, X for doodlebug, space for empty space)
+
+			age all critters by one day
+			increment step member variable
+
+		display menu asking to continue or quit
+	repeat while user chooses "continue"
+
+
+
+Questions/Design Decisions
+-----------
+when moving, how should a critter check if another cell is occupied or off the grid??
+	(My idea: Pass the grid object to the critter's move() function)
+how should we tackle the random placement?
+best way to check for empty adjacent cells?
+if couldn't breed, try to breed on next step or wait three more turns?
