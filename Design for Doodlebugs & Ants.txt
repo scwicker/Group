@@ -1,0 +1,55 @@
+Classes for Doodlebugs & Ants
+------------------------------
+grid is 20x20 2D array
+
+Critter
+----------
+#xPos: int
+#yPos: int
+#stepsSurvived: int
+----------
++Critter(): constructor
++Critter(xPos: int, yPos: int): constructor
++move(): void (virtual)
++breed(): void
+
+Ant (subclass Critter)
+----------
+----------
++move(): void (virtual)
++breed(): void (virtual)
+
+Doodlebug (subclass Critter)
+----------
+-stepsWithoutEating: int
+----------
++move(): void (virtual)
++breed(): void (virtual)
++starve(): void
+
+Game
+----------
+board: Critter**
+numRows: int
+numColumns: int
+menu: Menu
+ants: vector?
+doodlebugs: vector?
+----------
+
+Game()
+---------------
+
+
+run()
+-----------------
+create 5 doodlebugs
+create 100 ants
+ 
+ask user how many steps to run
+
+doodlebugs move/eat, breed, starve
+ants move, breed
+
+display the result at end of turn (O for ant, X for doodlebug, space for empty space)
+
