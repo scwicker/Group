@@ -9,12 +9,12 @@ CXXFLAGS += -g
 
 SRCS = main.cpp 
 SRCS += Critter.cpp Ant.cpp Doodlebug.cpp Grid.cpp
-SRCS += helpers.cpp
+SRCS += helpers.cpp Menu.cpp MenuItem.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 HEADERS = Critter.hpp Ant.hpp Doodlebug.hpp Grid.hpp
-HEADERS += helpers.hpp 
+HEADERS += helpers.hpp Menu.hpp MenuItem.hpp
 # additional files for make zip
 FILES = Makefile
 
