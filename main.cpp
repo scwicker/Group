@@ -42,6 +42,30 @@ int main() {
         grid->getGrid()[randRow][randCol] = ant;
     }
 
+    // create vector to hold doodlebug pointers
+    std::vector<Doodlebug*> doodlebugs;
+
+    // create and place ants!
+    for (int i = 0; i < 5; i++)
+    {
+        // get random empty spot on grid for doodlebug
+        bool foundSpot = false;
+        int randRow, randCol;
+        while (!foundSpot)
+        {
+            randRow = getRandom(0, (grid->getRows() - 1));
+            randCol = getRandom(0, (grid->getCols() - 1));
+            if (grid->checkEmpty(randRow, randCol))
+            {
+                foundSpot = true;
+            }
+        }
+
+        Doodlebug* doodlebug = new Doodlebug(grid, randRow, randCol);
+        doodlebugs.push_back(doodlebug);
+        grid->getGrid()[randRow][randCol] = doodlebug;
+    }
+
     std::cout << "Cols " << grid->getCols() << std::endl;
     std::cout << "Rows " << grid->getRows() << std::endl;
     
