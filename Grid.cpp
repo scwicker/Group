@@ -4,37 +4,78 @@
 
 #include "Grid.hpp"
 
-Grid::Grid(){
-grid = new Critter **[20]; // CAN SET THE 20'S TO OUR ROWS AND COLUMNS LATER
-                        // WE SHOULD PROBABLY AVOID RANDOM/VARIABLE ROWS/COLUMNS UNTIL AFTER DEBUGGING BASIC MOVEMENTS
-    for (int i = 0; i<20; i++)
-    {
-        grid[i] = new Critter *[20];
-        for (int k = 0; k < 20; k++)
-        {
-            grid [i][k] = nullptr;
-        }
-    }
+const int ROWS_DEFAULT = 20;
+const int COLS_DEFAULT = 20;
+
+Grid::Grid()
+{
+	grid = nullptr;
+	rows = ROWS_DEFAULT;
+	cols = COLS_DEFAULT;
 }
 
-Grid::Print(){
-    for (int i = 0; i<20; i++)
-    {
+Grid::Grid(int rows, int cols)
+{
+	this->rows = rows;
+	this->cols = cols;
 
-    }
+	createGrid();
 }
 
+Grid::~Grid()
+{
+	if (grid != nullptr)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				if (grid[i][j] != nullptr)
+				{
+					delete grid[i][j];
+				}
+			}
+			delete [] grid[i];
+		}
+		delete [] grid;
+	}
+}
 
+void Grid::createGrid()
+{
+	grid = new Critter **[rows];
 
-Grid::~Grid() {
-    for (int i = 0; i<20; i++)
-    {
-        for (int k = 0; k < 20; k++)
-        {
-            if (grid [i][k] != nullptr) {
-                delete grid[i][k];
-            }
-        }
-        delete grid[i];
-    } //WILL NEED TO DEALLOCATE MORE HERE WHEN WE GET FUTHER
+	for (int i = 0; i < rows; i++)
+	{
+		grid[i] = new Critter *[cols];
+		for (int j = 0; j < cols; j++)
+		{
+			grid[i][j] = nullptr;
+		}
+	}
+}
+
+int Grid::getRows()
+{
+	return rows;
+}
+
+void Grid::setRows(int rows)
+{
+	this->rows = rows;
+}
+
+int Grid::getCols()
+{
+	return cols;
+}
+
+int Grid::setCols(int cols)
+{
+	this->cols = cols;
+}
+
+void Grid::print()
+{
+	//todo: print grid
 }
