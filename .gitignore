@@ -1,5 +1,8 @@
-# ignore folders
+# ignore IDE-generated files and folders
 .idea/
+.vscode/
+cmake-build-debug/
+CMakeLists.txt
 
 # Prerequisites
 *.d
