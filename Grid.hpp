@@ -35,6 +35,8 @@ class Grid
 	void setCols(int cols);
 	bool checkEmpty(int row, int col);
 	void print() const;
+
+	bool emptyAdjacent(int row, int col);
 };
 
 #endif //GROUPPROJECT_GRID_HPP

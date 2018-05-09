@@ -136,6 +136,34 @@ bool Grid::checkEmpty(int row, int col)
 }
 
 /*********************************************************************
+** emptyAdjacent: Checks if adjacent space on the grid is empty. Takes two
+** parameters for the row and column of the cell to check. Returns true
+** if at least one empty, false otherwise.
+*********************************************************************/
+bool Grid::emptyAdjacent(int row, int col)
+{
+	if (grid[row-1][col] == nullptr)
+	{
+		return true;
+	}
+	if (grid[row+1][col] == nullptr)
+	{
+		return true;
+	}
+	if (grid[row][col-1] == nullptr)
+	{
+		return true;
+	}
+	if (grid[row][col+1] == nullptr)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+/*********************************************************************
 ** print: Prints the current state of the grid to the terminal as chars
 ** using std::cout. Represents ants with 'O', doodlebugs with 'X', and
 ** null spaces with ' '.
