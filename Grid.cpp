@@ -138,7 +138,7 @@ bool Grid::checkEmpty(int row, int col)
 /*********************************************************************
 ** emptyAdjacent: Checks if adjacent space on the grid is empty. Takes two
 ** parameters for the row and column of the cell to check. Returns true
-** if at least one empty, false otherwise.
+** if at least one adjacent cell is empty, false otherwise.
 *********************************************************************/
 bool Grid::emptyAdjacent(int row, int col)
 {
