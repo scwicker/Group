@@ -125,6 +125,7 @@ void Grid::setCols(int cols)
 *********************************************************************/
 bool Grid::checkEmpty(int row, int col)
 {
+
 	if (grid[row][col] == nullptr)
 	{
 		return true;
@@ -142,19 +143,19 @@ bool Grid::checkEmpty(int row, int col)
 *********************************************************************/
 bool Grid::emptyAdjacent(int row, int col)
 {
-	if (grid[row-1][col] == nullptr)
+	if ((row - 1) > 0 && (grid[row - 1][col] == nullptr))
 	{
 		return true;
 	}
-	if (grid[row+1][col] == nullptr)
+	if ((row+1)<getRows()&&(grid[row+1][col] == nullptr))
 	{
 		return true;
 	}
-	if (grid[row][col-1] == nullptr)
+	if ((col - 1) > 0 && grid[row][col - 1] == nullptr)
 	{
 		return true;
 	}
-	if (grid[row][col+1] == nullptr)
+	if ((col+1)<getCols()&& (grid[row][col+1] == nullptr))
 	{
 		return true;
 	}
@@ -201,3 +202,4 @@ void Grid::print() const
 		std::cout << line << std::endl; // border bottom
 	}
 }
+

@@ -22,6 +22,7 @@ class Grid
 	Critter ***grid;
 	int rows;
 	int cols;
+	int antCounter = 100;
 
   public:
 	Grid();
@@ -35,7 +36,6 @@ class Grid
 	void setCols(int cols);
 	bool checkEmpty(int row, int col); //checks each direction for empty
 	void print() const;
-
 	bool emptyAdjacent(int row, int col);
 };
 
