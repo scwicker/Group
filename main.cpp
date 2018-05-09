@@ -79,11 +79,15 @@ int main() {
             if (ants.at(i) != nullptr)
             {
                 ants.at(i)->move();
-            }  
+                ants.at(i)->breed(*grid);
+
+            }
         }
         //pause();
     }
-grid->print();
+
+
+    grid->print();
         std::cout << std::endl;
     return 0;
 }

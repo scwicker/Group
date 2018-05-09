@@ -12,7 +12,8 @@ class Ant : public Critter
 public:
 	Ant();
 	Ant(Grid *grid, int currentRow, int currentCol);
-	virtual void breed();
+	virtual void breed(Grid&);
+
 };
 
 #endif //GROUPPROJECT_ANT_HPP
