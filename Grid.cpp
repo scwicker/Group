@@ -174,6 +174,7 @@ void Grid::print() const
 	// only print grid if it exists
 	if (grid != nullptr)
 	{
+		std::cout << std::endl;
 		std::string line(cols + 2, '-');
 		std::cout << line << std::endl; // border top
 
@@ -200,6 +201,7 @@ void Grid::print() const
 		}
 
 		std::cout << line << std::endl; // border bottom
+		std::cout << std::endl;
 	}
 }
 
@@ -207,14 +209,14 @@ void Grid::print() const
 ** checkAnt:
 ** 
 *********************************************************************/
-bool Grid::checkAnt(int row, int col) {
-	 if (grid[row][col] != nullptr && grid[row][col]->getType() == ANT)
-	 {
-		 return true;
-	 }
-	 else
-	 {
-		 return false;
-	 }
+bool Grid::checkAnt(int row, int col)
+{
+	if (grid[row][col] != nullptr && grid[row][col]->getType() == ANT)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
-

@@ -6,3 +6,25 @@
 ** 
 ** 
 *********************************************************************/
+
+#ifndef GAME_HPP
+#define GAME_HPP
+
+#include "Grid.hpp"
+
+#include "Menu.hpp"
+
+class Game
+{
+private:
+    int step;
+    Menu continueMenu;
+    Grid* grid;
+    void initializeGrid();
+    void takeStep();
+public:
+    Game();
+    void run();
+};
+
+#endif
