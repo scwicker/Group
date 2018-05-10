@@ -20,6 +20,7 @@
 Critter::Critter()
 {
 	stepsSurvived = 0;
+	daysSinceBreeding = 0;
 	currentRow = currentCol = -1;
 	grid = nullptr;
 }
@@ -31,6 +32,7 @@ Critter::Critter()
 Critter::Critter(Grid *grid, int currentRow, int currentCol)
 {
 	stepsSurvived = 0;
+	daysSinceBreeding = 0;
 	this->grid = grid;
 	this->currentRow = currentRow;
 	this->currentCol = currentCol;
@@ -110,6 +112,16 @@ int Critter::getStepsSurvived() const
 	return stepsSurvived;
 }
 
+bool Critter::getMoved()
+{
+	return moved;
+}
+
+void Critter::setMoved(bool moved)
+{
+	this->moved = moved;
+}
+
 /*********************************************************************
 ** move: 
 ** 
@@ -174,15 +186,15 @@ void Critter::move()
 			currentCol = destinationCol;
 		}
 	}
+
+	moved = true;
 }
-
-
 
 /*********************************************************************
 ** breed: 
 ** 
 *********************************************************************/
-void Critter::breed(std::vector<Critter*>)
+void Critter::breed()
 {
 	// todo?
 }

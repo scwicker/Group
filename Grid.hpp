@@ -22,7 +22,6 @@ private:
 	Critter ***grid;
 	int rows;
 	int cols;
-	int antCounter = 100;
 public:
 	Grid();
 	Grid(int rows, int cols);

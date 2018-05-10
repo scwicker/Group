@@ -32,63 +32,63 @@ Ant::Ant(Grid *grid, int currentRow, int currentCol) : Critter(grid, currentRow,
 ** breed:
 ** 
 *********************************************************************/
-void Ant::breed(std::vector<Ant*> ants)
+void Ant::breed()
 {
-	if ((stepsSurvived >= 3 && grid->emptyAdjacent(currentRow,currentCol))) {
+	if ((daysSinceBreeding >= 3 && grid->emptyAdjacent(currentRow, currentCol)))
+	{
+		bool spawned = false;
 
-        {
-            bool antSpawned = false;
-            while (!antSpawned)
-            {
-               Direction newAntCell = static_cast<Direction>(getRandom(0,3));
-                switch (newAntCell)
-                {
-                    case NORTH:
-                    {
-                        if (currentRow -1 >= 0 && grid->checkEmpty(currentRow-1,currentCol)){
-                            Ant* ant = new Ant(grid, currentRow-1, currentCol);
-                            ants.push_back(ant);
-                            grid->getGrid()[currentRow-1][currentCol] = ant;
-                            antSpawned = true;
-                        }
+		while (!spawned)
+		{
+			Direction spawnDirection = static_cast<Direction>(getRandom(0, 3));
 
-                        break;
-                    }
-                    case SOUTH:
-                    {
-                        if (currentRow +1 < grid->getRows() && grid->checkEmpty(currentRow+1,currentCol)){
-                            Ant* ant = new Ant(grid, currentRow+1, currentCol);
-                            ants.push_back(ant);
-                            grid->getGrid()[currentRow+1][currentCol] = ant;
-                            antSpawned = true;
-                        }
-                    }
-                    case EAST:
-                    {
-                        if (currentCol -1 >= 0 && grid->checkEmpty(currentRow,currentCol-1)){
-                            Ant* ant = new Ant(grid, currentRow, currentCol-1);
-                            ants.push_back(ant);
-                            grid->getGrid()[currentRow][currentCol-1] = ant;
-                            antSpawned = true;
-                        }
-                    }
-                    case WEST:
-                    {
-                        if (currentCol + 1 < grid->getCols() && grid->checkEmpty(currentRow,currentCol+1)){
-                            Ant* ant = new Ant(grid, currentRow, currentCol+1);
-                            ants.push_back(ant);
-                            grid->getGrid()[currentRow][currentCol+1] = ant;
-                            antSpawned = true;
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-
-
-
+			if (spawnDirection == NORTH)
+			{
+				int spawnRow = currentRow - 1;
+				if (spawnRow >= 0 && grid->checkEmpty(spawnRow, currentCol))
+				{
+					Ant *ant = new Ant(grid, spawnRow, currentCol);
+					grid->getGrid()[spawnRow][currentCol] = ant;
+					spawned = true;
+				}
+			}
+			else if (spawnDirection == SOUTH)
+			{
+				int spawnRow = currentRow + 1;
+				if (spawnRow < grid->getRows() && grid->checkEmpty(spawnRow, currentCol))
+				{
+					Ant *ant = new Ant(grid, spawnRow, currentCol);
+					grid->getGrid()[spawnRow][currentCol] = ant;
+					spawned = true;
+				}
+			}
+			else if (spawnDirection == EAST)
+			{
+				int spawnCol = currentCol - 1;
+				if (spawnCol >= 0 && grid->checkEmpty(currentRow, spawnCol))
+				{
+					Ant *ant = new Ant(grid, currentRow, spawnCol);
+					grid->getGrid()[currentRow][spawnCol] = ant;
+					spawned = true;
+				}
+			}
+			else if (spawnDirection == WEST)
+			{
+				int spawnCol = currentCol + 1;
+				if (spawnCol < grid->getCols() && grid->checkEmpty(currentRow, spawnCol))
+				{
+					Ant *ant = new Ant(grid, currentRow, spawnCol);
+					grid->getGrid()[currentRow][spawnCol] = ant;
+					spawned = true;
+				}
+			}
+		}
+		daysSinceBreeding = 0;
+	}
+	else
+	{
+		daysSinceBreeding++;
+	}
 }
 
 Type Ant::getType()

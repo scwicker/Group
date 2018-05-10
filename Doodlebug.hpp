@@ -14,12 +14,15 @@
 
 class Doodlebug : public Critter
 {
+private:
+    int daysSinceEating;
 public:
     Doodlebug();
     Doodlebug(Grid *grid, int currentRow, int currentCol);
     virtual void move();
-    virtual void breed(std::vector <Doodlebug*>);
+    virtual void breed();
     virtual Type getType();
+    int getDaysSinceEating();
 };
 
 
