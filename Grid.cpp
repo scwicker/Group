@@ -125,6 +125,7 @@ void Grid::setCols(int cols)
 *********************************************************************/
 bool Grid::checkEmpty(int row, int col)
 {
+
 	if (grid[row][col] == nullptr)
 	{
 		return true;
@@ -135,6 +136,34 @@ bool Grid::checkEmpty(int row, int col)
 	}
 }
 
+/*********************************************************************
+** emptyAdjacent: Checks if adjacent space on the grid is empty. Takes two
+** parameters for the row and column of the cell to check. Returns true
+** if at least one adjacent cell is empty, false otherwise.
+*********************************************************************/
+bool Grid::emptyAdjacent(int row, int col)
+{
+	if ((row - 1) >= 0 && (grid[row - 1][col] == nullptr))
+	{
+		return true;
+	}
+	if ((row+1)<getRows()&&(grid[row+1][col] == nullptr))
+	{
+		return true;
+	}
+	if ((col - 1) >= 0 && grid[row][col - 1] == nullptr)
+	{
+		return true;
+	}
+	if ((col+1)<getCols()&& (grid[row][col+1] == nullptr))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 /*********************************************************************
 ** print: Prints the current state of the grid to the terminal as chars
 ** using std::cout. Represents ants with 'O', doodlebugs with 'X', and
@@ -173,3 +202,4 @@ void Grid::print() const
 		std::cout << line << std::endl; // border bottom
 	}
 }
+

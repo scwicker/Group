@@ -45,7 +45,7 @@ int main() {
     // create vector to hold doodlebug pointers
     std::vector<Doodlebug*> doodlebugs;
 
-    // create and place ants!
+    // create and place doodlebugs!
     for (int i = 0; i < 5; i++)
     {
         // get random empty spot on grid for doodlebug
@@ -79,11 +79,18 @@ int main() {
             if (ants.at(i) != nullptr)
             {
                 ants.at(i)->move();
-            }  
+                ants.at(i)->breed(ants);
+                ants.at(i)->age();
+
+            }
         }
+        std::cout << i << " iteration" << std::endl;
+        std::cout << ants.size() << " ants total" << std::endl;
         //pause();
     }
-grid->print();
+
+
+    grid->print();
         std::cout << std::endl;
     return 0;
 }
