@@ -22,10 +22,22 @@
 Game::Game()
 {
     step = 1;
+    grid = nullptr;
 
     continueMenu.setTitle("Game Over");
     continueMenu.addItem(1, "Continue running simulation");
     continueMenu.addItem(2, "Exit program");
+}
+
+/*********************************************************************
+** Destructor for Game class.
+*********************************************************************/
+Game::~Game()
+{
+    if (grid != nullptr)
+    {
+    	delete grid;
+	}
 }
 
 /*********************************************************************

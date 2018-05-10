@@ -24,6 +24,7 @@ private:
     void takeStep();
 public:
     Game();
+    ~Game();
     void run();
 };
 
