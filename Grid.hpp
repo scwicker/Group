@@ -18,13 +18,11 @@
 
 class Grid
 {
-  private:
+private:
 	Critter ***grid;
 	int rows;
 	int cols;
-	int antCounter = 100;
-
-  public:
+public:
 	Grid();
 	Grid(int rows, int cols);
 	~Grid();
@@ -37,6 +35,7 @@ class Grid
 	bool checkEmpty(int row, int col); //checks each direction for empty
 	void print() const;
 	bool emptyAdjacent(int row, int col);
+	bool checkAnt(int, int);
 };
 
 #endif //GROUPPROJECT_GRID_HPP

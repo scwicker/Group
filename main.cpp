@@ -18,9 +18,6 @@ int main() {
     // create grid
     Grid* grid = new Grid(20, 20);
 
-    // create vector to hold ant pointers
-    std::vector<Ant*> ants;
-
     // create and place ants!
     for (int i = 0; i < 100; i++)
     {
@@ -38,12 +35,8 @@ int main() {
         }
 
         Ant* ant = new Ant(grid, randRow, randCol);
-        ants.push_back(ant);
         grid->getGrid()[randRow][randCol] = ant;
     }
-
-    // create vector to hold doodlebug pointers
-    std::vector<Doodlebug*> doodlebugs;
 
     // create and place doodlebugs!
     for (int i = 0; i < 5; i++)
@@ -62,7 +55,6 @@ int main() {
         }
 
         Doodlebug* doodlebug = new Doodlebug(grid, randRow, randCol);
-        doodlebugs.push_back(doodlebug);
         grid->getGrid()[randRow][randCol] = doodlebug;
     }
 
@@ -70,32 +62,96 @@ int main() {
     std::cout << "Rows " << grid->getRows() << std::endl;
     
     // test 100 moves
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 1000; i++)
     {
         grid->print();
         std::cout << std::endl;
-        for (unsigned i = 0; i < ants.size(); i++)
-        {
-            if (ants.at(i) != nullptr)
-            {
-                ants.at(i)->move();
-                ants.at(i)->breed(ants);
-                ants.at(i)->age();
 
+        // set all critters as unmoved
+        for (int row = 0; row < grid->getRows(); row++)
+        {
+            for (int col = 0; col < grid->getCols(); col++)
+            {
+                if (grid->getGrid()[row][col] != nullptr)
+                {
+                    grid->getGrid()[row][col]->setMoved(false);
+                }
             }
         }
-        for (unsigned i = 0; i < doodlebugs.size(); i++)
-        {
-            if (doodlebugs.at(i) != nullptr)
-            {
-                doodlebugs.at(i)->move();
-                doodlebugs.at(i)->breed(doodlebugs);
-                doodlebugs.at(i)->age();
 
+        // move all doodlebugs
+        for (int row = 0; row < grid->getRows(); row++)
+        {
+            for (int col = 0; col < grid->getCols(); col++)
+            {
+                if (grid->getGrid()[row][col] != nullptr && grid->getGrid()[row][col]->getType() == DOODLEBUG)
+                {
+                    if (grid->getGrid()[row][col]->getMoved() == false)
+                    {
+                        grid->getGrid()[row][col]->move();
+                    }
+                }
             }
         }
+
+        // move all ants
+        for (int row = 0; row < grid->getRows(); row++)
+        {
+            for (int col = 0; col < grid->getCols(); col++)
+            {
+                if (grid->getGrid()[row][col] != nullptr && grid->getGrid()[row][col]->getType() == ANT)
+                {
+                    if (grid->getGrid()[row][col]->getMoved() == false)
+                    {
+                        grid->getGrid()[row][col]->move();
+                    }
+                }
+            }
+        }
+
+        // breed all critters, starve doodlebugs, and age all critters
+        for (int row = 0; row < grid->getRows(); row++)
+        {
+            for (int col = 0; col < grid->getCols(); col++)
+            {
+                if (grid->getGrid()[row][col] != nullptr)
+                {
+                    grid->getGrid()[row][col]->breed();
+                    
+                    // starve doodlebugs that have not eaten in 3 days
+                    if (grid->getGrid()[row][col]->getType() == DOODLEBUG)
+                    {
+                        if (dynamic_cast<Doodlebug*>(grid->getGrid()[row][col])->getDaysSinceEating() >= 3)
+                        {
+                            delete grid->getGrid()[row][col];
+                            grid->getGrid()[row][col] = nullptr;
+                        } 
+                    }
+
+                    // age critter one day if it didn't already starve.
+                    if (grid->getGrid()[row][col] != nullptr)
+                    {
+                        grid->getGrid()[row][col]->age();
+                    }
+                }
+            }
+        }
+
+        // check starving doodlebugs
+
+        // age all critters
+        for (int row = 0; row < grid->getRows(); row++)
+        {
+            for (int col = 0; col < grid->getCols(); col++)
+            {
+                if (grid->getGrid()[row][col] != nullptr)
+                {
+                    grid->getGrid()[row][col]->age();
+                }
+            }
+        }
+
         std::cout << i << " iteration" << std::endl;
-        std::cout << ants.size() << " ants total" << std::endl;
         //pause();
     }
 

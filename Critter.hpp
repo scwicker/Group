@@ -20,14 +20,14 @@ enum Type {ANT, DOODLEBUG};
 
 class Critter
 {
-  protected:
+protected:
 	int currentRow;
 	int currentCol;
 	int stepsSurvived;
+	int daysSinceBreeding;
+	bool moved;
 	Grid *grid;
-    int type;
-
-  public:
+public:
 	Critter();
 	Critter(Grid *grid, int currentRow, int currentCol);
 	virtual ~Critter();
@@ -36,11 +36,14 @@ class Critter
 	int getColPosition() const;
 	bool setColPosition(int currentCol);
 	int getStepsSurvived() const;
+	bool getMoved();
+	void setMoved(bool moved);
 	Grid *getGrid();
 	void setGrid(Grid *grid);
 	virtual void move();
-	virtual void breed(std::vector<Critter*>);
+	virtual void breed();
 	void age();
+    virtual Type getType() = 0;
 };
 
 #endif //GROUPPROJECT_CRITTER_HPP

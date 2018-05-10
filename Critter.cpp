@@ -20,6 +20,7 @@
 Critter::Critter()
 {
 	stepsSurvived = 0;
+	daysSinceBreeding = 0;
 	currentRow = currentCol = -1;
 	grid = nullptr;
 }
@@ -31,6 +32,7 @@ Critter::Critter()
 Critter::Critter(Grid *grid, int currentRow, int currentCol)
 {
 	stepsSurvived = 0;
+	daysSinceBreeding = 0;
 	this->grid = grid;
 	this->currentRow = currentRow;
 	this->currentCol = currentCol;
@@ -110,40 +112,36 @@ int Critter::getStepsSurvived() const
 	return stepsSurvived;
 }
 
+bool Critter::getMoved()
+{
+	return moved;
+}
+
+void Critter::setMoved(bool moved)
+{
+	this->moved = moved;
+}
+
 /*********************************************************************
 ** move: 
 ** 
 *********************************************************************/
-void Critter::move()
+void Critter::move() 
 {
 	Direction moveDirection = static_cast<Direction>(getRandom(0, 3));
 
-	if (moveDirection == WEST)
+	if (moveDirection == NORTH)
 	{
-		int destinationCol = currentCol - 1;
+		int destinationRow = currentRow - 1;
 
 		// move only if space is empty and within grid bounds
-		if (destinationCol >= 0 && grid->checkEmpty(currentRow, destinationCol))
+		if (destinationRow >= 0 && grid->checkEmpty(destinationRow, currentCol))
 		{
 			Critter ***gridArray = grid->getGrid();
-			gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
+			gridArray[destinationRow][currentCol] = gridArray[currentRow][currentCol];
 			gridArray[currentRow][currentCol] = nullptr;
 
-			currentCol = destinationCol;
-		}
-	}
-	else if (moveDirection == EAST)
-	{
-		int destinationCol = currentCol + 1;
-
-		// move only if space is empty and within grid bounds
-		if ((destinationCol < grid->getCols()) && grid->checkEmpty(currentRow, destinationCol))
-		{
-			Critter ***gridArray = grid->getGrid();
-			gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
-			gridArray[currentRow][currentCol] = nullptr;
-
-			currentCol = destinationCol;
+			currentRow = destinationRow;
 		}
 	}
 	else if (moveDirection == SOUTH)
@@ -160,27 +158,43 @@ void Critter::move()
 			currentRow = destinationRow;
 		}
 	}
-	else if (moveDirection == NORTH)
+	else if (moveDirection == EAST)
 	{
-		int destinationRow = currentRow - 1;
+		int destinationCol = currentCol + 1;
 
 		// move only if space is empty and within grid bounds
-		if (destinationRow >= 0 && grid->checkEmpty(destinationRow, currentCol))
+		if ((destinationCol < grid->getCols()) && grid->checkEmpty(currentRow, destinationCol))
 		{
 			Critter ***gridArray = grid->getGrid();
-			gridArray[destinationRow][currentCol] = gridArray[currentRow][currentCol];
+			gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
 			gridArray[currentRow][currentCol] = nullptr;
 
-			currentRow = destinationRow;
+			currentCol = destinationCol;
 		}
 	}
+	else if (moveDirection == WEST)
+	{
+		int destinationCol = currentCol - 1;
+
+		// move only if space is empty and within grid bounds
+		if (destinationCol >= 0 && grid->checkEmpty(currentRow, destinationCol))
+		{
+			Critter ***gridArray = grid->getGrid();
+			gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
+			gridArray[currentRow][currentCol] = nullptr;
+
+			currentCol = destinationCol;
+		}
+	}
+
+	moved = true;
 }
 
 /*********************************************************************
 ** breed: 
 ** 
 *********************************************************************/
-void Critter::breed(std::vector<Critter*>)
+void Critter::breed()
 {
 	// todo?
 }

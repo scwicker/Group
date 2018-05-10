@@ -125,7 +125,6 @@ void Grid::setCols(int cols)
 *********************************************************************/
 bool Grid::checkEmpty(int row, int col)
 {
-
 	if (grid[row][col] == nullptr)
 	{
 		return true;
@@ -147,7 +146,7 @@ bool Grid::emptyAdjacent(int row, int col)
 	{
 		return true;
 	}
-	if ((row+1)<getRows()&&(grid[row+1][col] == nullptr))
+	if ((row + 1) < getRows() && (grid[row+1][col] == nullptr))
 	{
 		return true;
 	}
@@ -155,7 +154,7 @@ bool Grid::emptyAdjacent(int row, int col)
 	{
 		return true;
 	}
-	if ((col+1)<getCols()&& (grid[row][col+1] == nullptr))
+	if ((col + 1) < getCols() && (grid[row][col+1] == nullptr))
 	{
 		return true;
 	}
@@ -164,6 +163,7 @@ bool Grid::emptyAdjacent(int row, int col)
 		return false;
 	}
 }
+
 /*********************************************************************
 ** print: Prints the current state of the grid to the terminal as chars
 ** using std::cout. Represents ants with 'O', doodlebugs with 'X', and
@@ -201,5 +201,20 @@ void Grid::print() const
 
 		std::cout << line << std::endl; // border bottom
 	}
+}
+
+/*********************************************************************
+** checkAnt:
+** 
+*********************************************************************/
+bool Grid::checkAnt(int row, int col) {
+	 if (grid[row][col] != nullptr && grid[row][col]->getType() == ANT)
+	 {
+		 return true;
+	 }
+	 else
+	 {
+		 return false;
+	 }
 }
 
