@@ -79,7 +79,7 @@ int main() {
             if (ants.at(i) != nullptr)
             {
                 ants.at(i)->move();
-                ants.at(i)->breed(*grid,ants);
+                ants.at(i)->breed(ants);
                 ants.at(i)->age();
 
             }

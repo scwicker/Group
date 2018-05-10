@@ -13,7 +13,7 @@ class Ant : public Critter
 public:
 	Ant();
 	Ant(Grid *grid, int currentRow, int currentCol);
-	virtual void breed(Grid&,std::vector <Ant*>);
+	virtual void breed(std::vector <Ant*>);
 
 };
 

@@ -143,7 +143,7 @@ bool Grid::checkEmpty(int row, int col)
 *********************************************************************/
 bool Grid::emptyAdjacent(int row, int col)
 {
-	if ((row - 1) > 0 && (grid[row - 1][col] == nullptr))
+	if ((row - 1) >= 0 && (grid[row - 1][col] == nullptr))
 	{
 		return true;
 	}
@@ -151,7 +151,7 @@ bool Grid::emptyAdjacent(int row, int col)
 	{
 		return true;
 	}
-	if ((col - 1) > 0 && grid[row][col - 1] == nullptr)
+	if ((col - 1) >= 0 && grid[row][col - 1] == nullptr)
 	{
 		return true;
 	}
