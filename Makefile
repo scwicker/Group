@@ -8,12 +8,12 @@ CXXFLAGS += -Wall -pedantic-errors
 CXXFLAGS += -g
 
 SRCS = main.cpp 
-SRCS += Critter.cpp Ant.cpp Doodlebug.cpp Grid.cpp
+SRCS += Critter.cpp Ant.cpp Doodlebug.cpp Grid.cpp Game.cpp
 SRCS += helpers.cpp Menu.cpp MenuItem.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADERS = Critter.hpp Ant.hpp Doodlebug.hpp Grid.hpp
+HEADERS = Critter.hpp Ant.hpp Doodlebug.hpp Grid.hpp Game.hpp
 HEADERS += helpers.hpp Menu.hpp MenuItem.hpp
 # additional files for make zip
 FILES = Makefile

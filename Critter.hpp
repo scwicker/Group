@@ -41,7 +41,7 @@ public:
 	Grid *getGrid();
 	void setGrid(Grid *grid);
 	virtual void move();
-	virtual void breed();
+	virtual void breed() = 0;
 	void age();
     virtual Type getType() = 0;
 };
