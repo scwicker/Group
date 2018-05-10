@@ -33,7 +33,6 @@ Ant::Ant(Grid *grid, int currentRow, int currentCol) : Critter(grid, currentRow,
 /**************************************************************************************************/
 void Ant::breed(std::vector<Ant*> ants)
 {
-    //still need to check for edge cases in emptyAdjacent
 	if ((stepsSurvived >= 3 && grid->emptyAdjacent(currentRow,currentCol))) {
 
         {

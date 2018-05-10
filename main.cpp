@@ -84,6 +84,16 @@ int main() {
 
             }
         }
+        for (unsigned i = 0; i < doodlebugs.size(); i++)
+        {
+            if (doodlebugs.at(i) != nullptr)
+            {
+                doodlebugs.at(i)->move();
+                doodlebugs.at(i)->breed(doodlebugs);
+                doodlebugs.at(i)->age();
+
+            }
+        }
         std::cout << i << " iteration" << std::endl;
         std::cout << ants.size() << " ants total" << std::endl;
         //pause();
