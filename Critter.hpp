@@ -10,10 +10,13 @@
 #ifndef GROUPPROJECT_CRITTER_HPP
 #define GROUPPROJECT_CRITTER_HPP
 
+#include <vector>
+
 // forward declaration of Grid class
 class Grid;
 
 enum Direction {NORTH, SOUTH, EAST, WEST};
+enum Type {ANT, DOODLEBUG};
 
 class Critter
 {
@@ -22,6 +25,7 @@ class Critter
 	int currentCol;
 	int stepsSurvived;
 	Grid *grid;
+    int type;
 
   public:
 	Critter();
@@ -35,7 +39,7 @@ class Critter
 	Grid *getGrid();
 	void setGrid(Grid *grid);
 	virtual void move();
-	virtual void breed();
+	virtual void breed(std::vector<Critter*>);
 	void age();
 };
 

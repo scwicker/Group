@@ -8,10 +8,12 @@
 
 Ant::Ant() : Critter()
 {
+    type = ANT;
 }
 
 Ant::Ant(Grid *grid, int currentRow, int currentCol) : Critter(grid, currentRow, currentCol)
 {
+    type = ANT;
 }
 
 

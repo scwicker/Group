@@ -180,7 +180,7 @@ void Critter::move()
 ** breed: 
 ** 
 *********************************************************************/
-void Critter::breed()
+void Critter::breed(std::vector<Critter*>)
 {
 	// todo?
 }

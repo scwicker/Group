@@ -8,11 +8,12 @@
 
 
 Doodlebug::Doodlebug() : Critter() {
-
+    type = DOODLEBUG;
 }
 
 Doodlebug::Doodlebug(Grid *grid, int currentRow, int currentCol) : Critter(grid, currentRow, currentCol) {
     stepsSurvived = 0;
+    type = DOODLEBUG;
 
 
 }
