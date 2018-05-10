@@ -114,101 +114,68 @@ int Critter::getStepsSurvived() const
 ** move: 
 ** 
 *********************************************************************/
-void Critter::move() {
-	if (this->type == DOODLEBUG) {
-		bool ateAnt = false;
-		while (!ateAnt) {
-			int destinationCol = currentCol - 1;
-			// move only if space is ANT and within grid bounds
-			if (destinationCol >= 0 && grid->checkAnt(currentRow, destinationCol)) {
-				Critter ***gridArray = grid->getGrid();
-				gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
-				gridArray[currentRow][currentCol] = nullptr;
-				this->daysSinceEatin = 0;
-				currentCol = destinationCol;
-				ateAnt = true;
+void Critter::move() 
+{
+	Direction moveDirection = static_cast<Direction>(getRandom(0, 3));
 
-			}
-			destinationCol = currentCol + 1;
-			if ((destinationCol < grid->getCols()) && grid->checkAnt(currentRow, destinationCol)) {
-				Critter ***gridArray = grid->getGrid();
-				gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
-				gridArray[currentRow][currentCol] = nullptr;
-				this->daysSinceEatin = 0;
-				currentCol = destinationCol;
-				ateAnt = true;
-			}
-			int destinationRow = currentRow - 1;
-			if (destinationRow >= 0 && grid->checkAnt(destinationRow, currentCol)) {
-				Critter ***gridArray = grid->getGrid();
-				gridArray[destinationRow][currentCol] = gridArray[currentRow][currentCol];
-				gridArray[currentRow][currentCol] = nullptr;
-				this->daysSinceEatin = 0;
-				currentRow = destinationRow;
-				ateAnt = true;
-			}
-			destinationRow = currentRow + 1;
-			if ((destinationRow < grid->getRows()) && grid->checkAnt(destinationRow, currentCol)) {
-				Critter ***gridArray = grid->getGrid();
-				gridArray[destinationRow][currentCol] = gridArray[currentRow][currentCol];
-				gridArray[currentRow][currentCol] = nullptr;
-				this->daysSinceEatin = 0;
-				currentRow = destinationRow;
-				ateAnt = true;
-			}
-			break;
+	if (moveDirection == NORTH)
+	{
+		int destinationRow = currentRow - 1;
+
+		// move only if space is empty and within grid bounds
+		if (destinationRow >= 0 && grid->checkEmpty(destinationRow, currentCol))
+		{
+			Critter ***gridArray = grid->getGrid();
+			gridArray[destinationRow][currentCol] = gridArray[currentRow][currentCol];
+			gridArray[currentRow][currentCol] = nullptr;
+
+			currentRow = destinationRow;
 		}
 	}
-	else {
-			Direction moveDirection = static_cast<Direction>(getRandom(0, 3));
+	else if (moveDirection == SOUTH)
+	{
+		int destinationRow = currentRow + 1;
 
-			if (moveDirection == WEST) {
-				int destinationCol = currentCol - 1;
+		// move only if space is empty and within grid bounds
+		if ((destinationRow < grid->getRows()) && grid->checkEmpty(destinationRow, currentCol))
+		{
+			Critter ***gridArray = grid->getGrid();
+			gridArray[destinationRow][currentCol] = gridArray[currentRow][currentCol];
+			gridArray[currentRow][currentCol] = nullptr;
 
-				// move only if space is empty and within grid bounds
-				if (destinationCol >= 0 && grid->checkEmpty(currentRow, destinationCol)) {
-					Critter ***gridArray = grid->getGrid();
-					gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
-					gridArray[currentRow][currentCol] = nullptr;
-
-					currentCol = destinationCol;
-				}
-			} else if (moveDirection == EAST) {
-				int destinationCol = currentCol + 1;
-
-				// move only if space is empty and within grid bounds
-				if ((destinationCol < grid->getCols()) && grid->checkEmpty(currentRow, destinationCol)) {
-					Critter ***gridArray = grid->getGrid();
-					gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
-					gridArray[currentRow][currentCol] = nullptr;
-
-					currentCol = destinationCol;
-				}
-			} else if (moveDirection == SOUTH) {
-				int destinationRow = currentRow + 1;
-
-				// move only if space is empty and within grid bounds
-				if ((destinationRow < grid->getRows()) && grid->checkEmpty(destinationRow, currentCol)) {
-					Critter ***gridArray = grid->getGrid();
-					gridArray[destinationRow][currentCol] = gridArray[currentRow][currentCol];
-					gridArray[currentRow][currentCol] = nullptr;
-
-					currentRow = destinationRow;
-				}
-			} else if (moveDirection == NORTH) {
-				int destinationRow = currentRow - 1;
-
-				// move only if space is empty and within grid bounds
-				if (destinationRow >= 0 && grid->checkEmpty(destinationRow, currentCol)) {
-					Critter ***gridArray = grid->getGrid();
-					gridArray[destinationRow][currentCol] = gridArray[currentRow][currentCol];
-					gridArray[currentRow][currentCol] = nullptr;
-
-					currentRow = destinationRow;
-				}
-			}
+			currentRow = destinationRow;
 		}
 	}
+	else if (moveDirection == EAST)
+	{
+		int destinationCol = currentCol + 1;
+
+		// move only if space is empty and within grid bounds
+		if ((destinationCol < grid->getCols()) && grid->checkEmpty(currentRow, destinationCol))
+		{
+			Critter ***gridArray = grid->getGrid();
+			gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
+			gridArray[currentRow][currentCol] = nullptr;
+
+			currentCol = destinationCol;
+		}
+	}
+	else if (moveDirection == WEST)
+	{
+		int destinationCol = currentCol - 1;
+
+		// move only if space is empty and within grid bounds
+		if (destinationCol >= 0 && grid->checkEmpty(currentRow, destinationCol))
+		{
+			Critter ***gridArray = grid->getGrid();
+			gridArray[currentRow][destinationCol] = gridArray[currentRow][currentCol];
+			gridArray[currentRow][currentCol] = nullptr;
+
+			currentCol = destinationCol;
+		}
+	}
+}
+
 
 
 /*********************************************************************
@@ -226,9 +193,4 @@ void Critter::breed(std::vector<Critter*>)
 void Critter::age()
 {
 	stepsSurvived++;
-}
-
-
-int Critter::getType() {
-	return type;
 }

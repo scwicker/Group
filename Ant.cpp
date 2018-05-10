@@ -1,38 +1,37 @@
-//
-// Created by Scott Wickersham on 5/5/18.
-//
+/*********************************************************************
+** Program name: Ant.cpp
+** Author: Group 1 - CS162 Spring 2018
+** Date: May 10, 2018
+** Description: 
+** 
+** 
+*********************************************************************/
 
 #include "Ant.hpp"
 #include "Grid.hpp"
 #include "helpers.hpp"
 
+/*********************************************************************
+** Default constructor
+*********************************************************************/
 Ant::Ant() : Critter()
 {
-    type = ANT;
+
 }
 
+/*********************************************************************
+** 
+** 
+*********************************************************************/
 Ant::Ant(Grid *grid, int currentRow, int currentCol) : Critter(grid, currentRow, currentCol)
 {
-    type = ANT;
+
 }
 
-
-
-
-
-
-/*********************************************************************************************/
-//Ant::breed(Grid& grid)
-//if stepsSurvived % 3 == 0
-//if an adjacent cell is empty
-//        antSpawned = false
-//until antSpawned
-//pick a random number (0 - 3)
-//pick adjacent cell above, below, left, or right based on random number
-//if cell is empty
-//        spawn new ant in cell
-//        antSpawned = true
-/**************************************************************************************************/
+/*********************************************************************
+** breed:
+** 
+*********************************************************************/
 void Ant::breed(std::vector<Ant*> ants)
 {
 	if ((stepsSurvived >= 3 && grid->emptyAdjacent(currentRow,currentCol))) {
@@ -92,3 +91,7 @@ void Ant::breed(std::vector<Ant*> ants)
 
 }
 
+Type Ant::getType()
+{
+    return ANT;
+}

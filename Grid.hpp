@@ -18,13 +18,12 @@
 
 class Grid
 {
-  private:
+private:
 	Critter ***grid;
 	int rows;
 	int cols;
 	int antCounter = 100;
-
-  public:
+public:
 	Grid();
 	Grid(int rows, int cols);
 	~Grid();
