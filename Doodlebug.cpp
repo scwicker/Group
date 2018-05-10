@@ -9,11 +9,13 @@
 
 Doodlebug::Doodlebug() : Critter() {
     type = DOODLEBUG;
+    daysSinceEatin =0;
 }
 
 Doodlebug::Doodlebug(Grid *grid, int currentRow, int currentCol) : Critter(grid, currentRow, currentCol) {
     stepsSurvived = 0;
     type = DOODLEBUG;
+    daysSinceEatin = 0;
 
 
 }

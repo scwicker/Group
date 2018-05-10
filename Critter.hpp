@@ -26,7 +26,7 @@ class Critter
 	int stepsSurvived;
 	Grid *grid;
     int type;
-
+    int daysSinceEatin;
   public:
 	Critter();
 	Critter(Grid *grid, int currentRow, int currentCol);
@@ -41,6 +41,7 @@ class Critter
 	virtual void move();
 	virtual void breed(std::vector<Critter*>);
 	void age();
+    virtual int getType();
 };
 
 #endif //GROUPPROJECT_CRITTER_HPP

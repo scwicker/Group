@@ -203,3 +203,14 @@ void Grid::print() const
 	}
 }
 
+bool Grid::checkAnt(int row, int col) {
+	 if (grid[row][col] != nullptr && grid[row][col]->getType() == ANT)
+	 {
+		 return true;
+	 }
+	 else
+	 {
+		 return false;
+	 }
+}
+
