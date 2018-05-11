@@ -12,12 +12,13 @@
 #include <ctime>
 #include <cstdlib>
 
-int main() {
-    // seed rand in main to avoid reseeding
-    srand(time(0));
-    
-    Game game;
-    game.run();
-    
-    return 0;
+int main()
+{
+	// seed rand in main to avoid reseeding
+	srand(time(0));
+
+	Game game;
+	game.run();
+
+	return 0;
 }

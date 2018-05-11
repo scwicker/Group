@@ -17,15 +17,16 @@
 class Game
 {
 private:
-    int step;
-    Menu continueMenu;
-    Grid* grid;
-    void initializeGrid();
-    void takeStep();
+	int step;
+	Menu continueMenu;
+	Grid *grid;
+	void initializeGrid();
+	void takeStep();
+
 public:
-    Game();
-    ~Game();
-    void run();
+	Game();
+	~Game();
+	void run();
 };
 
 #endif

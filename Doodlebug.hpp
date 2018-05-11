@@ -15,15 +15,14 @@
 class Doodlebug : public Critter
 {
 private:
-    int daysSinceEating;
+	int daysSinceEating;
 public:
-    Doodlebug();
-    Doodlebug(Grid *grid, int currentRow, int currentCol);
-    virtual void move();
-    virtual void breed();
-    virtual Type getType();
-    int getDaysSinceEating();
+	Doodlebug();
+	Doodlebug(Grid *grid, int currentRow, int currentCol);
+	virtual void move();
+	virtual void breed();
+	virtual Type getType();
+	int getDaysSinceEating();
 };
-
 
 #endif //GROUPPROJECT_DOODLEBUG_HPP
