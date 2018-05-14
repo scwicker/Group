@@ -2,13 +2,14 @@
 ** Program name: Game.cpp
 ** Author: Group 1 - CS162 Spring 2018
 ** Date: May 10, 2018
-** Description: 
-** 
-** 
+** Description: Implementation of the Game class, the interface for
+** running the Ants & Doodlebugs simulation.  Call run() to
+** start the simulation. 
 *********************************************************************/
 
 #include "Game.hpp"
 
+// critter class specifications
 #include "Critter.hpp"
 #include "Doodlebug.hpp"
 #include "Ant.hpp"
@@ -31,7 +32,7 @@ Game::Game()
 }
 
 /*********************************************************************
-** Destructor for Game class.
+** Destructor for Game class. Deallocates memory from grid.
 *********************************************************************/
 Game::~Game()
 {
@@ -42,8 +43,8 @@ Game::~Game()
 }
 
 /*********************************************************************
-** run:
-** 
+** run: The public interface for running an instance of the Ants & Doodlebugs
+** simulation. Call from main() to run the simulation.
 *********************************************************************/
 void Game::run()
 {
@@ -61,6 +62,7 @@ void Game::run()
 	std::cout << "Initial board state" << std::endl;
 	grid->print();
 
+	// game loop
 	do
 	{
 		std::cout << "Run simulation for how many time steps?" << std::endl;
@@ -80,7 +82,7 @@ void Game::run()
 		}
 		else
 		{
-			// allow user to continue
+			// allow user to continue if they desire
 			continueMenu.print();
 		}
 	} while (continueMenu.getChoice() == 1 && step != INT_MAX);
@@ -89,8 +91,10 @@ void Game::run()
 }
 
 /*********************************************************************
-** initializeGrid:
-** 
+** initializeGrid: Private function which initializes the grid after
+** asking the user for the grid size and number of critters. After the
+** grid is allocated, it places all ants and doodlebugs in random positions
+** on the grid.
 *********************************************************************/
 void Game::initializeGrid()
 {
@@ -153,8 +157,10 @@ void Game::initializeGrid()
 }
 
 /*********************************************************************
-** takeStep:
-** 
+** takeStep: Private function which executes all parts of a single step
+** in the simulation. Moves and breeds all critters, starves doodlebugs
+** as necessary, prints board at the end of the step, and increments
+** the step variable.
 *********************************************************************/
 void Game::takeStep()
 {

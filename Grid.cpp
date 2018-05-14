@@ -206,8 +206,9 @@ void Grid::print() const
 }
 
 /*********************************************************************
-** checkAnt:
-** 
+** checkAnt: Takes two integers representing row and column as parameters
+** and returns true if the board space at those coordinates contains an Ant.
+** Returns false otherwise.
 *********************************************************************/
 bool Grid::checkAnt(int row, int col)
 {

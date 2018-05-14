@@ -2,15 +2,13 @@
 ** Program name: Critter.hpp
 ** Author: Group 1 - CS162 Spring 2018
 ** Date: May 8, 2018
-** Description: 
-** 
-** 
+** Description: Specification for the Critter class, an abstract class
+** which defines basic properties and methods pertaining to Critters.
+** Implementation in Critter.cpp.
 *********************************************************************/
 
 #ifndef GROUPPROJECT_CRITTER_HPP
 #define GROUPPROJECT_CRITTER_HPP
-
-#include <vector>
 
 // forward declaration of Grid class
 class Grid;

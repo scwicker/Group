@@ -4,8 +4,8 @@
 ** Date: May 8, 2018
 ** Description: Specification for the Grid class, which represents a
 ** grid, or board, filled with Critters (Ants and Doodlebugs).
-** Grid size defaults to 20x20 or can be initialized with user provided values.
-** Implementation in Grid.cpp.
+** Grid size defaults to 20x20 or can be initialized with user provided 
+** values. Implementation in Grid.cpp.
 *********************************************************************/
 
 #ifndef GROUPPROJECT_GRID_HPP

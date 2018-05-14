@@ -1,16 +1,14 @@
 /*********************************************************************
-** Program name: Critter.cpp
+** Program name: Critter.hpp
 ** Author: Group 1 - CS162 Spring 2018
 ** Date: May 8, 2018
-** Description: 
-** 
-** 
+** Description: Specification for the Critter class, an abstract class
+** which defines basic properties and methods pertaining to Critters.
+** Specification in Critter.hpp.
 *********************************************************************/
 
 #include "Critter.hpp" // Critter class specification
 #include "Grid.hpp"	// Grid class specification
-
-#include <iostream>
 
 #include "helpers.hpp"
 
@@ -27,7 +25,7 @@ Critter::Critter()
 
 /*********************************************************************
 ** Constructor for Critter which takes integer parameters representing
-** the row position and column position of the ant on the grid. 
+** the row position and column position of the critter on the grid. 
 *********************************************************************/
 Critter::Critter(Grid *grid, int currentRow, int currentCol)
 {
@@ -123,8 +121,9 @@ void Critter::setMoved(bool moved)
 }
 
 /*********************************************************************
-** move: 
-** 
+** move: Basic move function for critters. Selects a direction at random
+** and tries to move in that direction. If the target space is occupied,
+** the critter does not move.
 *********************************************************************/
 void Critter::move() 
 {

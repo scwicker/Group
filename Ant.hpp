@@ -2,9 +2,9 @@
 ** Program name: Ant.hpp
 ** Author: Group 1 - CS162 Spring 2018
 ** Date: May 10, 2018
-** Description: 
-** 
-** 
+** Description: Specification for the Ant class, which inherits from
+** Critter. Includes Ant-specific method implementations, specifically
+** the breed function. Implementation in Ant.cpp.
 *********************************************************************/
 #ifndef GROUPPROJECT_ANT_HPP
 #define GROUPPROJECT_ANT_HPP

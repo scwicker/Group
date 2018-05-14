@@ -2,20 +2,29 @@
 ** Program name: Doodlebug.cpp
 ** Author: Group 1 - CS162 Spring 2018
 ** Date: May 10, 2018
-** Description: 
-** 
-** 
+** Description: Specification for the Doodlebug class, which inherits from
+** Critter. Includes Doodlebug-specific method implementations, specifically
+** the breed function. Implementation in Doodlebug.cpp.
 *********************************************************************/
 
 #include "Doodlebug.hpp"
 #include "Grid.hpp"
 #include "helpers.hpp"
 
+/*********************************************************************
+** Default constructor. Calls Critter default constructor and additionally
+** initializes daysSinceEating.
+*********************************************************************/
 Doodlebug::Doodlebug() : Critter()
 {
 	daysSinceEating = 0;
 }
 
+/*********************************************************************
+** Constructor for Doodlebug which takes integer parameters representing
+** the row position and column position of the doodlebug on the grid.
+** Also initializes daysSinceEating.
+*********************************************************************/
 Doodlebug::Doodlebug(Grid *grid, int currentRow, int currentCol) : Critter(grid, currentRow, currentCol)
 {
 	daysSinceEating = 0;
@@ -27,8 +36,10 @@ int Doodlebug::getDaysSinceEating()
 }
 
 /*********************************************************************
-** move: 
-** 
+** move: Doodlebug version of the move function which first checks for
+** any ants in adjacent cells.  If an ant exists, it will randomly pick
+** a cell with an ant, "eat" that ant, and move into that cell. Otherwise,
+** the normal Critter move function is executed.
 *********************************************************************/
 void Doodlebug::move()
 {
@@ -126,8 +137,10 @@ void Doodlebug::move()
 }
 
 /*********************************************************************
-** breed:
-** 
+** breed: Ant implementation of the breed function. Spawns a new ant
+** into an empty adjacent cell if it has not bred for 3 or more days.
+** If no adjacent cell, ant is not spawned and daysSinceBreeding is
+** incremented. Breeding will be attempted again next turn.
 *********************************************************************/
 void Doodlebug::breed()
 {
@@ -189,8 +202,8 @@ void Doodlebug::breed()
 }
 
 /*********************************************************************
-** getType: 
-** 
+** getType: Returns the type of this object as a Type enum. Each critter
+** inherited class should have its own version of this method.
 *********************************************************************/
 Type Doodlebug::getType()
 {
