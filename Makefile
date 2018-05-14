@@ -16,7 +16,7 @@ OBJS = $(SRCS:.cpp=.o)
 HEADERS = Critter.hpp Ant.hpp Doodlebug.hpp Grid.hpp Game.hpp
 HEADERS += helpers.hpp Menu.hpp MenuItem.hpp
 # additional files for make zip
-FILES = Makefile
+FILES = Makefile "Group_1_Design_&_Reflections_Doc.pdf"
 
 $(PROGRAM): $(OBJS)
 	$(CXX) $(OBJS) -o $(PROGRAM)
